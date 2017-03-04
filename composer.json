@@ -1,9 +1,9 @@
 {
-	"name"			: "ipub/ratchet-zmq",
+	"name"			: "ipub/websockets-zmq",
 	"type"			: "library",
-	"description"	: "ZeroMQ pusher & consumer implementation for ipub/ratchet",
-	"keywords"		: ["nette", "ratchet", "zmq", "zeromq", "websockets", "ipub", "ipublikuj", "framework", "tools"],
-	"homepage"		: "https://github.com/iPublikuj/ratchet-zmq",
+	"description"	: "ZeroMQ pusher & consumer implementation for ipub/websockets-wamp",
+	"keywords"		: ["nette", "websockets", "zmq", "zeromq", "ipub", "ipublikuj", "framework", "tools"],
+	"homepage"		: "https://github.com/iPublikuj/websockets-zmq",
 	"license"		: ["GPL-2.0", "GPL-3.0"],
 
 	"authors": [
@@ -16,14 +16,14 @@
 
 	"support":{
 		"email"		:"support@ipublikuj.eu",
-		"issues"	:"https://github.com/iPublikuj/ratchet-zmq/issues"
+		"issues"	:"https://github.com/iPublikuj/websockets-zmq/issues"
 	},
 
 	"extra": {
 		"ipub"	: {
 			"configuration" : {
 				"extensions" : {
-					"ratchet" : "IPub\\RatchetZMQ\\DI\\RatchetZMQExtension"
+					"webSocketsZMQ" : "IPub\\WebSocketsZMQ\\DI\\WebSocketsZMQExtension"
 				}
 			}
 		}
@@ -34,7 +34,7 @@
 
 		"react/zmq": "~0.3.0",
 
-		"ipub/ratchet"	: "~1.0",
+		"ipub/websockets-wamp"	: "~1.0",
 
 		"pds/skeleton"	: "^1.0",
 
@@ -57,7 +57,7 @@
 
 	"autoload": {
 		"psr-0": {
-			"IPub\\RatchetZMQ\\": "src/"
+			"IPub\\WebSocketsZMQ\\": "src/"
 		}
 	}
 }

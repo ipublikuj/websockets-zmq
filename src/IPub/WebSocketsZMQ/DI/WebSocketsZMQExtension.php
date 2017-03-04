@@ -1,11 +1,11 @@
 <?php
 /**
- * RatchetZMQExtension.php
+ * WebSocketsZMQExtension.php
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
  * @author         Adam Kadlec http://www.ipublikuj.eu
- * @package        iPublikuj:RatchetZMQ!
+ * @package        iPublikuj:WebSocketZMQ!
  * @subpackage     DI
  * @since          1.0.0
  *
@@ -14,20 +14,20 @@
 
 declare(strict_types = 1);
 
-namespace IPub\Ratchet\DI;
+namespace IPub\WebSockets\DI;
 
 use Nette;
 use Nette\DI;
 
 use IPub;
-use IPub\RatchetZMQ;
-use IPub\RatchetZMQ\Consumer;
-use IPub\RatchetZMQ\Pusher;
+use IPub\WebSocketsZMQ;
+use IPub\WebSocketsZMQ\Consumer;
+use IPub\WebSocketsZMQ\Pusher;
 
 /**
- * Ratchet ZeroMQ                  extension container
+ * WebSockets ZeroMQ extension container
  *
- * @package        iPublikuj:Ratchet!
+ * @package        iPublikuj:WebSocket!
  * @subpackage     DI
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
@@ -36,7 +36,7 @@ use IPub\RatchetZMQ\Pusher;
  * @method array getConfig(array $defaults)
  * @method string prefix(string $name)
  */
-final class RatchetZMQExtension extends DI\CompilerExtension
+final class WebSocketsZMQExtension extends DI\CompilerExtension
 {
 	/**
 	 * @var array
@@ -59,7 +59,7 @@ final class RatchetZMQExtension extends DI\CompilerExtension
 		// Get extension configuration
 		$configuration = $this->getConfig($this->defaults);
 
-		$configuration = new RatchetZMQ\Configuration(
+		$configuration = new WebSocketsZMQ\Configuration(
 			$configuration['host'],
 			$configuration['port'],
 			$configuration['persistent'],
@@ -81,10 +81,10 @@ final class RatchetZMQExtension extends DI\CompilerExtension
 	 *
 	 * @return void
 	 */
-	public static function register(Nette\Configurator $config, string $extensionName = 'ratchetZMQ')
+	public static function register(Nette\Configurator $config, string $extensionName = 'websocketsZMQ')
 	{
 		$config->onCompile[] = function (Nette\Configurator $config, DI\Compiler $compiler) use ($extensionName) {
-			$compiler->addExtension($extensionName, new RatchetZMQExtension());
+			$compiler->addExtension($extensionName, new WebSocketsZMQExtension());
 		};
 	}
 }

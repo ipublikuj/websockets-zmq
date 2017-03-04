@@ -5,7 +5,7 @@
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
  * @author         Adam Kadlec http://www.ipublikuj.eu
- * @package        iPublikuj:RatchetZMQ!
+ * @package        iPublikuj:WebSocketZMQ!
  * @subpackage     Pusher
  * @since          1.0.0
  *
@@ -14,21 +14,22 @@
 
 declare(strict_types = 1);
 
-namespace IPub\RatchetZMQ\Pusher;
+namespace IPub\WebSocketsZMQ\Pusher;
 
 use Psr\Log;
 
 use IPub;
-use IPub\RatchetZMQ;
+use IPub\WebSocketsZMQ;
 
-use IPub\Ratchet\PushMessages;
-use IPub\Ratchet\Router;
-use IPub\Ratchet\Serializers;
+use IPub\WebSockets\Router;
+
+use IPub\WebSocketsWAMP\PushMessages;
+use IPub\WebSocketsWAMP\Serializers;
 
 /**
  * ZeroMQ message pusher
  *
- * @package        iPublikuj:RatchetZMQ!
+ * @package        iPublikuj:WebSocketZMQ!
  * @subpackage     Pushers
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
@@ -36,7 +37,7 @@ use IPub\Ratchet\Serializers;
 final class Pusher extends PushMessages\Pusher
 {
 	/**
-	 * @var RatchetZMQ\Configuration
+	 * @var WebSocketsZMQ\Configuration
 	 */
 	private $configuration;
 
@@ -51,18 +52,18 @@ final class Pusher extends PushMessages\Pusher
 	private $socket;
 
 	/**
-	 * @param RatchetZMQ\Configuration $configuration
+	 * @param WebSocketsZMQ\Configuration $configuration
 	 * @param Log\LoggerInterface|NULL $logger
 	 * @param Router\LinkGenerator $linkGenerator
 	 * @param Serializers\PushMessageSerializer $serializer
 	 */
 	public function __construct(
-		RatchetZMQ\Configuration $configuration,
+		WebSocketsZMQ\Configuration $configuration,
 		Log\LoggerInterface $logger = NULL,
 		Router\LinkGenerator $linkGenerator,
 		Serializers\PushMessageSerializer $serializer
 	) {
-		parent::__construct('zmq', $linkGenerator, $serializer);
+		parent::__construct('zmq', $serializer, $linkGenerator);
 
 		$this->configuration = $configuration;
 		$this->logger = $logger === NULL ? new Log\NullLogger : $logger;

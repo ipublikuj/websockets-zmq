@@ -5,7 +5,7 @@
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
  * @author         Adam Kadlec http://www.ipublikuj.eu
- * @package        iPublikuj:RatchetZMQ!
+ * @package        iPublikuj:WebSocketZMQ!
  * @subpackage     Consumer
  * @since          1.0.0
  *
@@ -14,7 +14,7 @@
 
 declare(strict_types = 1);
 
-namespace IPub\RatchetZMQ\Consumer;
+namespace IPub\WebSocketsZMQ\Consumer;
 
 use Psr\Log;
 
@@ -23,17 +23,17 @@ use React\EventLoop;
 use React\ZMQ;
 
 use IPub;
-use IPub\RatchetZMQ;
+use IPub\WebSocketsZMQ;
 
-use IPub\Ratchet\Application;
-use IPub\Ratchet\Entities;
-use IPub\Ratchet\PushMessages;
-use IPub\Ratchet\Serializers;
+use IPub\WebSocketsWAMP\Application;
+use IPub\WebSocketsWAMP\Entities;
+use IPub\WebSocketsWAMP\PushMessages;
+use IPub\WebSocketsWAMP\Serializers;
 
 /**
  * ZeroMQ consumer
  *
- * @package        iPublikuj:RatchetZMQ!
+ * @package        iPublikuj:WebSocketZMQ!
  * @subpackage     Consumer
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
@@ -41,7 +41,7 @@ use IPub\Ratchet\Serializers;
 final class Consumer extends PushMessages\Consumer
 {
 	/**
-	 * @var RatchetZMQ\Configuration
+	 * @var WebSocketsZMQ\Configuration
 	 */
 	private $configuration;
 
@@ -61,12 +61,12 @@ final class Consumer extends PushMessages\Consumer
 	private $logger;
 
 	/**
-	 * @param RatchetZMQ\Configuration $configuration
+	 * @param WebSocketsZMQ\Configuration $configuration
 	 * @param Serializers\PushMessageSerializer $serializer
 	 * @param Log\LoggerInterface|NULL $logger
 	 */
 	public function __construct(
-		RatchetZMQ\Configuration $configuration,
+		WebSocketsZMQ\Configuration $configuration,
 		Serializers\PushMessageSerializer $serializer,
 		Log\LoggerInterface $logger = NULL
 	) {
@@ -78,7 +78,7 @@ final class Consumer extends PushMessages\Consumer
 	/**
 	 * {@inheritdoc}
 	 */
-	public function handle(EventLoop\LoopInterface $loop, Application\IApplication $application)
+	public function handle(EventLoop\LoopInterface $loop, Application\V1\IApplication $application)
 	{
 		$context = new ZMQ\Context($loop);
 

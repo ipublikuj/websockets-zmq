@@ -1,12 +1,12 @@
 <?php
 /**
- * Test: IPub\RatchetZMQ\Extension
+ * Test: IPub\WebSocketsZMQ\Extension
  * @testCase
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
  * @author         Adam Kadlec http://www.ipublikuj.eu
- * @package        iPublikuj:RatchetZMQ!
+ * @package        iPublikuj:WebSocketZMQ!
  * @subpackage     Tests
  * @since          1.0.0
  *
@@ -15,7 +15,7 @@
 
 declare(strict_types = 1);
 
-namespace IPubTests\RatchetZMQ;
+namespace IPubTests\WebSocketsZMQ;
 
 use Nette;
 
@@ -23,7 +23,7 @@ use Tester;
 use Tester\Assert;
 
 use IPub;
-use IPub\RatchetZMQ;
+use IPub\WebSocketsZMQ;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
@@ -33,8 +33,8 @@ class ExtensionTest extends Tester\TestCase
 	{
 		$dic = $this->createContainer();
 
-		Assert::true($dic->getService('ratchetZMQ.consumer') instanceof RatchetZMQ\Consumer\Consumer);
-		Assert::true($dic->getService('ratchetZMQ.pusher') instanceof RatchetZMQ\Pusher\Pusher);
+		Assert::true($dic->getService('websocketsZMQ.consumer') instanceof WebSocketsZMQ\Consumer\Consumer);
+		Assert::true($dic->getService('websocketsZMQ.pusher') instanceof WebSocketsZMQ\Pusher\Pusher);
 	}
 
 	/**
