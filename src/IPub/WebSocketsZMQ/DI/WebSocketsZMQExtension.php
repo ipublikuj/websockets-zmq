@@ -55,8 +55,9 @@ final class WebSocketsZMQExtension extends DI\CompilerExtension
 	{
 		parent::loadConfiguration();
 
+		/** @var DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
-		// Get extension configuration
+		/** @var array $configuration */
 		$configuration = $this->getConfig($this->defaults);
 
 		$configuration = new WebSocketsZMQ\Configuration(
@@ -81,7 +82,7 @@ final class WebSocketsZMQExtension extends DI\CompilerExtension
 	 *
 	 * @return void
 	 */
-	public static function register(Nette\Configurator $config, string $extensionName = 'websocketsZMQ')
+	public static function register(Nette\Configurator $config, string $extensionName = 'webSocketsZMQ')
 	{
 		$config->onCompile[] = function (Nette\Configurator $config, DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new WebSocketsZMQExtension());

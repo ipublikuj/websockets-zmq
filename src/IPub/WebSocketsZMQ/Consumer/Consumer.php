@@ -70,6 +70,8 @@ final class Consumer extends PushMessages\Consumer
 		Serializers\PushMessageSerializer $serializer,
 		Log\LoggerInterface $logger = NULL
 	) {
+		parent::__construct('zmq');
+
 		$this->configuration = $configuration;
 		$this->serializer = $serializer;
 		$this->logger = $logger === NULL ? new Log\NullLogger : $logger;
@@ -78,7 +80,7 @@ final class Consumer extends PushMessages\Consumer
 	/**
 	 * {@inheritdoc}
 	 */
-	public function handle(EventLoop\LoopInterface $loop, Application\V1\IApplication $application)
+	public function connect(EventLoop\LoopInterface $loop, Application\V1\IApplication $application)
 	{
 		$context = new ZMQ\Context($loop);
 
@@ -99,7 +101,7 @@ final class Consumer extends PushMessages\Consumer
 
 				$application->onPush($message, $this->getName());
 
-				$this->onSuccess($data, $this);
+				$this->onSuccess($this, $data);
 
 			} catch (\Exception $ex) {
 				$this->logger->error(
@@ -111,8 +113,20 @@ final class Consumer extends PushMessages\Consumer
 					]
 				);
 
-				$this->onFail($data, $this);
+				$this->onFail($this, $data);
 			}
+		});
+
+		$this->socket->on('error', function (\Exception $ex) use ($application) {
+			$this->logger->error(
+				'ZMQ socket failed to receive message', [
+					'exception_message' => $ex->getMessage(),
+					'file'              => $ex->getFile(),
+					'line'              => $ex->getLine(),
+				]
+			);
+
+			$this->onFail($this);
 		});
 	}
 
