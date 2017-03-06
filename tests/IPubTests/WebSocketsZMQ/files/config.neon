@@ -3,3 +3,5 @@ extensions:
 	websockets : IPub\WebSockets\DI\WebSocketsExtension
 	websocketsZMQ : IPub\WebSockets\DI\WebSocketsZMQExtension
 
+services:
+	- IPubTests\WebSocketsZMQ\Libraries\Application

@@ -7,7 +7,7 @@
 [![Composer Downloads](https://img.shields.io/packagist/dt/ipub/websockets-zmq.svg?style=flat-square)](https://packagist.org/packages/ipub/websockets-zmq)
 [![License](https://img.shields.io/packagist/l/ipub/websockets-zmq.svg?style=flat-square)](https://packagist.org/packages/ipub/websockets-zmq)
 
-Extension for implementing [WebSockets](http://socketo.me/) WebSockets into [Nette Framework](http://nette.org/)
+Extension for implementing [ZeroMQ](http://zeromq.org/) pusher & consumer into [ipub/websockets-wamp](https://github.com/iPublikuj/websockets-wamp)
 
 ## Installation
 
@@ -21,7 +21,7 @@ After that you have to register extension in config.neon.
 
 ```neon
 extensions:
-	websocketsZMQ: IPub\WebSocketsZMQ\DI\WebSocketsZMQExtension
+	webSocketsZMQ: IPub\WebSocketsZMQ\DI\WebSocketsZMQExtension
 ```
 
 ## Documentation
