@@ -26,7 +26,7 @@ extensions:
 
 ## Documentation
 
-Learn how to create WebSocket server & controllers in [documentation](https://github.com/iPublikuj/websockets-zmq/blob/master/docs/en/index.md).
+Learn how to create WebSockets pusher & consumer in [documentation](https://github.com/iPublikuj/websockets-zmq/blob/master/docs/en/index.md).
 
 ***
 Homepage [http://www.ipublikuj.eu](http://www.ipublikuj.eu) and repository [http://github.com/iPublikuj/websockets-zmq](http://github.com/iPublikuj/websockets-zmq).
