@@ -11,6 +11,11 @@ matrix:
   allow_failures:
     - env: NETTE=~3.0.0
 
+addons:
+  apt:
+    packages:
+      - libzmq-dev
+
 before_install:
   - composer self-update
 
