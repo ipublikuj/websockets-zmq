@@ -20,6 +20,8 @@ before_install:
   - composer self-update
 
 before_script:
+  - git clone https://github.com/mkoppanen/php-zmq.git
+  - sh -c "cd php-zmq && phpize && ./configure && make --silent && sudo make install"
   - php .travis.composer.php
   - composer install --no-interaction --prefer-source --dev
 
