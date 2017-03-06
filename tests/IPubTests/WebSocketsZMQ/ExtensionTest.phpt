@@ -26,7 +26,6 @@ use IPub;
 use IPub\WebSocketsZMQ;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
-require __DIR__ . DS . 'libraries' . DS . 'Application.php';
 
 class ExtensionTest extends Tester\TestCase
 {
@@ -34,8 +33,8 @@ class ExtensionTest extends Tester\TestCase
 	{
 		$dic = $this->createContainer();
 
-		Assert::true($dic->getService('websocketsZMQ.consumer') instanceof WebSocketsZMQ\Consumer\Consumer);
-		Assert::true($dic->getService('websocketsZMQ.pusher') instanceof WebSocketsZMQ\Pusher\Pusher);
+		Assert::true($dic->getService('webSocketsZMQ.consumer') instanceof WebSocketsZMQ\Consumer\Consumer);
+		Assert::true($dic->getService('webSocketsZMQ.pusher') instanceof WebSocketsZMQ\Pusher\Pusher);
 	}
 
 	/**
