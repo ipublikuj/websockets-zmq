@@ -14,7 +14,7 @@
 
 declare(strict_types = 1);
 
-namespace IPub\WebSockets\DI;
+namespace IPub\WebSocketsZMQ\DI;
 
 use Nette;
 use Nette\DI;

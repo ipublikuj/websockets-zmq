@@ -2,7 +2,7 @@ extensions:
 	console	: Kdyby\Console\DI\ConsoleExtension
 	webSockets : IPub\WebSockets\DI\WebSocketsExtension
 	webSocketsWAMP : IPub\WebSocketsWAMP\DI\WebSocketsWAMPExtension
-	webSocketsZMQ : IPub\WebSockets\DI\WebSocketsZMQExtension
+	webSocketsZMQ : IPub\WebSocketsZMQ\DI\WebSocketsZMQExtension
 
 services:
 	- IPubTests\WebSocketsZMQ\Libraries\Application
