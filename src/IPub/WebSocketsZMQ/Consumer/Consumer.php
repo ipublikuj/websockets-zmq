@@ -80,7 +80,7 @@ final class Consumer extends PushMessages\Consumer
 	/**
 	 * {@inheritdoc}
 	 */
-	public function connect(EventLoop\LoopInterface $loop, Application\V1\IApplication $application)
+	public function connect(EventLoop\LoopInterface $loop, Application\IApplication $application)
 	{
 		$context = new ZMQ\Context($loop);
 
