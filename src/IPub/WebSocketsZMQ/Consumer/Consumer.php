@@ -5,7 +5,7 @@
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
  * @author         Adam Kadlec http://www.ipublikuj.eu
- * @package        iPublikuj:WebSocketZMQ!
+ * @package        iPublikuj:WebSocketsZMQ!
  * @subpackage     Consumer
  * @since          1.0.0
  *
@@ -33,7 +33,7 @@ use IPub\WebSocketsWAMP\Serializers;
 /**
  * ZeroMQ consumer
  *
- * @package        iPublikuj:WebSocketZMQ!
+ * @package        iPublikuj:WebSocketsZMQ!
  * @subpackage     Consumer
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
@@ -99,7 +99,7 @@ final class Consumer extends PushMessages\Consumer
 				/** @var Entities\PushMessages\IMessage $message */
 				$message = $this->serializer->deserialize($data);
 
-				$application->onPush($message, $this->getName());
+				$application->handlePush($message, $this->getName());
 
 				$this->onSuccess($this, $data);
 

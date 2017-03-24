@@ -5,7 +5,7 @@
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
  * @author         Adam Kadlec http://www.ipublikuj.eu
- * @package        iPublikuj:WebSocketZMQ!
+ * @package        iPublikuj:WebSocketsZMQ!
  * @subpackage     common
  * @since          1.0.0
  *
@@ -21,7 +21,7 @@ use Nette;
 /**
  * ZeroMQ Pusher & consumer configuration container
  *
- * @package        iPublikuj:WebSocketZMQ!
+ * @package        iPublikuj:WebSocketsZMQ!
  * @subpackage     common
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
