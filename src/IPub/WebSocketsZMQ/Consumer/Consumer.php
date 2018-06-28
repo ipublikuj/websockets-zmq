@@ -133,7 +133,7 @@ final class Consumer extends PushMessages\Consumer
 	/**
 	 * {@inheritdoc}
 	 */
-	public function close()
+	public function close() : void
 	{
 		$this->socket ?: $this->socket->close();
 	}

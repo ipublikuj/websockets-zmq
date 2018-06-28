@@ -72,7 +72,7 @@ final class Pusher extends PushMessages\Pusher
 	/**
 	 * {@inheritdoc}
 	 */
-	public function close()
+	public function close() : void
 	{
 		if ($this->isConnected() === FALSE) {
 			return;
@@ -84,7 +84,7 @@ final class Pusher extends PushMessages\Pusher
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function doPush(string $data, array $context = [])
+	protected function doPush(string $data, array $context = []) : void
 	{
 		if ($this->isConnected() === FALSE) {
 			if (!extension_loaded('zmq')) {
