@@ -30,6 +30,8 @@ use IPub\WebSocketsWAMP\Entities;
 use IPub\WebSocketsWAMP\PushMessages;
 use IPub\WebSocketsWAMP\Serializers;
 
+use IPub\WebSockets\Exceptions as WebSocketsExceptions;
+
 /**
  * ZeroMQ consumer
  *
@@ -102,6 +104,9 @@ final class Consumer extends PushMessages\Consumer
 				$application->handlePush($message, $this->getName());
 
 				$this->onSuccess($this, $data);
+
+			} catch (WebSocketsExceptions\TerminateException $ex) {
+				throw $ex;
 
 			} catch (\Exception $ex) {
 				$this->logger->error(
