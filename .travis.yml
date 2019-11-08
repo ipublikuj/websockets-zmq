@@ -2,14 +2,10 @@ language: php
 
 env:
   - NETTE=default
-  - NETTE=~3.0.0
+  - NETTE=~2.4.0
 
 php:
-  - 7.0
-
-matrix:
-  allow_failures:
-    - env: NETTE=~3.0.0
+  - 7.2
 
 addons:
   apt:
@@ -26,7 +22,6 @@ before_script:
   - sh -c "cd php-zmq && phpize && ./configure && make --silent && sudo make install"
   - echo "extension=zmq.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - composer self-update
-  - php .travis.composer.php
   - composer install --no-interaction --prefer-source --dev
 
 script:

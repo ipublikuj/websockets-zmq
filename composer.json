@@ -1,63 +1,75 @@
 {
-	"name"			: "ipub/websockets-zmq",
-	"type"			: "library",
-	"description"	: "ZeroMQ pusher & consumer implementation for ipub/websockets-wamp",
-	"keywords"		: ["nette", "websockets", "zmq", "zeromq", "ipub", "ipublikuj", "framework", "tools"],
-	"homepage"		: "https://github.com/iPublikuj/websockets-zmq",
-	"license"		: ["GPL-2.0", "GPL-3.0"],
+  "name" : "ipub/websockets-zmq",
+  "type" : "library",
+  "description" : "ZeroMQ pusher & consumer implementation for ipub/websockets-wamp",
+  "keywords" : [
+    "nette",
+    "websockets",
+    "zmq",
+    "zeromq",
+    "ipub",
+    "ipublikuj",
+    "framework",
+    "tools"
+  ],
+  "homepage" : "https://github.com/iPublikuj/websockets-zmq",
+  "license" : [
+    "GPL-2.0",
+    "GPL-3.0"
+  ],
 
-	"authors": [
-		{
-			"name"		: "iPublikuj:cms",
-			"email"		: "info@ipublikuj.eu",
-			"homepage"	: "http://www.ipublikuj.eu/"
-		}
-	],
+  "authors" : [
+    {
+      "name" : "iPublikuj:cms",
+      "email" : "info@ipublikuj.eu",
+      "homepage" : "http://www.ipublikuj.eu/"
+    }
+  ],
 
-	"support":{
-		"email"		:"support@ipublikuj.eu",
-		"issues"	:"https://github.com/iPublikuj/websockets-zmq/issues"
-	},
+  "support" : {
+    "email" : "support@ipublikuj.eu",
+    "issues" : "https://github.com/iPublikuj/websockets-zmq/issues"
+  },
 
-	"extra": {
-		"ipub"	: {
-			"configuration" : {
-				"extensions" : {
-					"webSocketsZMQ" : "IPub\\WebSocketsZMQ\\DI\\WebSocketsZMQExtension"
-				}
-			}
-		}
-	},
+  "extra" : {
+    "ipub" : {
+      "configuration" : {
+        "extensions" : {
+          "webSocketsZMQ" : "IPub\\WebSocketsZMQ\\DI\\WebSocketsZMQExtension"
+        }
+      }
+    }
+  },
 
-	"require": {
-		"php"	: ">=7.0.0",
+  "require" : {
+    "php" : ">=7.2.0",
 
-		"react/zmq": "~0.3.0",
+    "react/zmq" : "~0.3",
 
-		"ipub/websockets-wamp"	: "~1.0.2",
+    "psr/log" : "~1.0",
 
-		"psr/log"	: "~1.0"
-	},
+    "ipub/websockets-wamp" : "~1.1.0"
+  },
 
-	"require-dev": {
-		"nette/bootstrap"		: "~2.4",
-		"nette/mail"			: "~2.4",
-		"nette/robot-loader"	: "~2.4",
-		"nette/safe-stream"		: "~2.3",
-		"nette/tester"			: "@dev",
+  "require-dev" : {
+    "nette/bootstrap" : "~2.4 || ~3.0",
+    "nette/mail" : "~2.4 || ~3.0",
+    "nette/robot-loader" : "~2.4 || ~3.0",
+    "nette/safe-stream" : "~2.3",
+    "nette/tester" : "~2.3",
 
-		"tracy/tracy"	: "@dev",
+    "tracy/tracy" : "~2.4",
 
-		"pds/skeleton"	: "^1.0"
-	},
+    "pds/skeleton" : "~1.0"
+  },
 
-	"suggest": {
-		"ext-zmq": "*"
-	},
+  "suggest" : {
+    "ext-zmq" : "*"
+  },
 
-	"autoload": {
-		"psr-0": {
-			"IPub\\WebSocketsZMQ\\": "src/"
-		}
-	}
+  "autoload" : {
+    "psr-0" : {
+      "IPub\\WebSocketsZMQ\\" : "src/"
+    }
+  }
 }
