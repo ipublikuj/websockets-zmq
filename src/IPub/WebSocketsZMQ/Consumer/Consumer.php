@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\WebSocketsZMQ\Consumer;
 
+use Closure;
+
 use Psr\Log;
 
 use React;
@@ -39,9 +41,22 @@ use IPub\WebSockets\Exceptions as WebSocketsExceptions;
  * @subpackage     Consumer
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ *
+ * @method onSuccess(Consumer $consumer, $data = NULL)
+ * @method onFail(Consumer $consumer, $data = NULL)
  */
 final class Consumer extends PushMessages\Consumer
 {
+	/**
+	 * @var Closure
+	 */
+	public $onSuccess = [];
+
+	/**
+	 * @var Closure
+	 */
+	public $onFail = [];
+
 	/**
 	 * @var WebSocketsZMQ\Configuration
 	 */

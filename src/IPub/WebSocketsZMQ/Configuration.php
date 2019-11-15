@@ -44,7 +44,7 @@ final class Configuration
 	private $port;
 
 	/**
-	 * @var string
+	 * @var bool
 	 */
 	private $persistent;
 
