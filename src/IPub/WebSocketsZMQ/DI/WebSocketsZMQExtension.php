@@ -58,7 +58,11 @@ final class WebSocketsZMQExtension extends DI\CompilerExtension
 		/** @var DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
 		/** @var array $configuration */
-		$configuration = $this->getConfig($this->defaults);
+		if (method_exists($this, 'validateConfig')) {
+			$configuration = $this->validateConfig($this->defaults);
+		} else {
+			$configuration = $this->getConfig($this->defaults);
+		}
 
 		$configuration = new WebSocketsZMQ\Configuration(
 			$configuration['host'],

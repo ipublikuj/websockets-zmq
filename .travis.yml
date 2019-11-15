@@ -7,21 +7,11 @@ env:
 php:
   - 7.2
 
-addons:
-  apt:
-    packages:
-      - libzmq-dev
-
 before_install:
   - composer self-update
 
 before_script:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y libzmq3-dev
-  - git clone https://github.com/mkoppanen/php-zmq.git
-  - sh -c "cd php-zmq && phpize && ./configure && make --silent && sudo make install"
-  - echo "extension=zmq.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - composer self-update
+  - php .travis.composer.php
   - composer install --no-interaction --prefer-source --dev
 
 script:
