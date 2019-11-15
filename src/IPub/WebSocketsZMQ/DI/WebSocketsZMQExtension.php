@@ -72,11 +72,11 @@ final class WebSocketsZMQExtension extends DI\CompilerExtension
 		);
 
 		$builder->addDefinition($this->prefix('consumer'))
-			->setClass(Consumer\Consumer::class)
+			->setType(Consumer\Consumer::class)
 			->setArguments(['configuration' => $configuration]);
 
 		$builder->addDefinition($this->prefix('pusher'))
-			->setClass(Pusher\Pusher::class)
+			->setType(Pusher\Pusher::class)
 			->setArguments(['configuration' => $configuration]);
 	}
 
