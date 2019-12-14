@@ -48,7 +48,7 @@
 
     "psr/log" : "~1.0",
 
-    "ipub/websockets-wamp" : "~1.1.0"
+    "ipub/websockets-wamp" : "^1.1.0"
   },
 
   "require-dev" : {
