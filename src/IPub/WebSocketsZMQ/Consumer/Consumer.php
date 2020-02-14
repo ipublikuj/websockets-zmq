@@ -17,12 +17,15 @@ declare(strict_types = 1);
 namespace IPub\WebSocketsZMQ\Consumer;
 
 use Closure;
+use ZMQ;
+use ZMQSocketException;
+use Throwable;
 
 use Psr\Log;
 
 use React;
 use React\EventLoop;
-use React\ZMQ;
+use React\ZMQ as ReactZMQ;
 
 use IPub;
 use IPub\WebSocketsZMQ;
@@ -68,7 +71,7 @@ final class Consumer extends PushMessages\Consumer
 	private $serializer;
 
 	/**
-	 * @var ZMQ\SocketWrapper
+	 * @var ReactZMQ\SocketWrapper
 	 */
 	private $socket;
 
@@ -96,12 +99,14 @@ final class Consumer extends PushMessages\Consumer
 
 	/**
 	 * {@inheritdoc}
+	 *
+	 * @throws ZMQSocketException
 	 */
 	public function connect(EventLoop\LoopInterface $loop, Application\IApplication $application)
 	{
-		$context = new ZMQ\Context($loop);
+		$context = new ReactZMQ\Context($loop);
 
-		$this->socket = $context->getSocket(\ZMQ::SOCKET_PULL);
+		$this->socket = $context->getSocket(ZMQ::SOCKET_PULL);
 
 		$this->logger->info(sprintf(
 			'ZMQ transport listening on %s:%s',
@@ -123,7 +128,7 @@ final class Consumer extends PushMessages\Consumer
 			} catch (WebSocketsExceptions\TerminateException $ex) {
 				throw $ex;
 
-			} catch (\Exception $ex) {
+			} catch (Throwable $ex) {
 				$this->logger->error(
 					'ZMQ socket failed to ack message', [
 						'exception_message' => $ex->getMessage(),
@@ -137,7 +142,7 @@ final class Consumer extends PushMessages\Consumer
 			}
 		});
 
-		$this->socket->on('error', function (\Exception $ex) use ($application) {
+		$this->socket->on('error', function (Throwable $ex) use ($application) {
 			$this->logger->error(
 				'ZMQ socket failed to receive message', [
 					'exception_message' => $ex->getMessage(),

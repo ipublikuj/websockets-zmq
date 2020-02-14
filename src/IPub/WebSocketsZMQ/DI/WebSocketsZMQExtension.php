@@ -18,8 +18,8 @@ namespace IPub\WebSocketsZMQ\DI;
 
 use Nette;
 use Nette\DI;
+use Nette\Schema;
 
-use IPub;
 use IPub\WebSocketsZMQ;
 use IPub\WebSocketsZMQ\Consumer;
 use IPub\WebSocketsZMQ\Pusher;
@@ -31,22 +31,21 @@ use IPub\WebSocketsZMQ\Pusher;
  * @subpackage     DI
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
- *
- * @method DI\ContainerBuilder getContainerBuilder()
- * @method array getConfig(array $defaults)
- * @method string prefix(string $name)
  */
 final class WebSocketsZMQExtension extends DI\CompilerExtension
 {
 	/**
-	 * @var array
+	 * {@inheritdoc}
 	 */
-	private $defaults = [
-		'host'       => '127.0.0.1',
-		'port'       => 5555,
-		'persistent' => TRUE,
-		'protocol'   => 'tcp',
-	];
+	public function getConfigSchema() : Schema\Schema
+	{
+		return Schema\Expect::structure([
+			'host'       => Schema\Expect::string('127.0.0.1'),
+			'port'       => Schema\Expect::int(5555),
+			'persistent' => Schema\Expect::bool(TRUE),
+			'protocol'   => Schema\Expect::string('tcp'),
+		]);
+	}
 
 	/**
 	 * {@inheritdoc}
@@ -55,29 +54,23 @@ final class WebSocketsZMQExtension extends DI\CompilerExtension
 	{
 		parent::loadConfiguration();
 
-		/** @var DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
-		/** @var array $configuration */
-		if (method_exists($this, 'validateConfig')) {
-			$configuration = $this->validateConfig($this->defaults);
-		} else {
-			$configuration = $this->getConfig($this->defaults);
-		}
+		$configuration = $this->getConfig();
 
-		$configuration = new WebSocketsZMQ\Configuration(
-			$configuration['host'],
-			$configuration['port'],
-			$configuration['persistent'],
-			$configuration['protocol']
+		$zmqConfiguration = new WebSocketsZMQ\Configuration(
+			$configuration->host,
+			$configuration->port,
+			$configuration->persistent,
+			$configuration->protocol
 		);
 
 		$builder->addDefinition($this->prefix('consumer'))
 			->setType(Consumer\Consumer::class)
-			->setArguments(['configuration' => $configuration]);
+			->setArguments(['configuration' => $zmqConfiguration]);
 
 		$builder->addDefinition($this->prefix('pusher'))
 			->setType(Pusher\Pusher::class)
-			->setArguments(['configuration' => $configuration]);
+			->setArguments(['configuration' => $zmqConfiguration]);
 	}
 
 	/**
@@ -86,8 +79,10 @@ final class WebSocketsZMQExtension extends DI\CompilerExtension
 	 *
 	 * @return void
 	 */
-	public static function register(Nette\Configurator $config, string $extensionName = 'webSocketsZMQ')
-	{
+	public static function register(
+		Nette\Configurator $config,
+		string $extensionName = 'webSocketsZMQ'
+	) : void {
 		$config->onCompile[] = function (Nette\Configurator $config, DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new WebSocketsZMQExtension());
 		};
