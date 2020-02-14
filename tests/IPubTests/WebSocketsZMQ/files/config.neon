@@ -13,10 +13,3 @@ contributteConsole:
 	lazy: false
 	helperSet: \Symfony\Component\Console\Helper\HelperSet
 	helpers: []
-
-webSockets:
-	console: true
-	symfonyEvents: true
-
-webSocketsWAMP:
-	symfonyEvents: true
