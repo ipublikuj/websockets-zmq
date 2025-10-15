@@ -36,22 +36,22 @@ final class Configuration
 	/**
 	 * @var string
 	 */
-	private $host;
+	public $host;
 
 	/**
 	 * @var int
 	 */
-	private $port;
+	public $port;
 
 	/**
 	 * @var bool
 	 */
-	private $persistent;
+	public $persistent;
 
 	/**
 	 * @var string
 	 */
-	private $protocol;
+	public $protocol;
 
 	/**
 	 * @param string $host
